@@ -2,11 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <title>Title</title>
 </head>
 <body>
 
-    <h1>Hello World!</h1>
+    <h1 id="text">Hello World!</h1>
 
 </body>
+
+<script>
+    <!--  서버 호출  -->
+    axios.get('/accounts/hello_world/')
+      .then(function (response) {
+        // handle success
+        console.log(response);
+
+        // 성공했을 경우 어떤 javascript 작업을 할지
+        document.getElementById('text').innerHTML = response.data['message']; // Return text
+
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+</script>
+
 </html>
