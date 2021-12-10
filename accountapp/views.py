@@ -5,15 +5,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-# UI 설정부분
 from accountapp.models import NewModel
 from accountapp.serializers import NewModelSerializer
 
 
+# UI 설정부분
 def hello_world_template(request):
     return render(request, 'accountapp/hello_world.html')
-
-
 
 # 로직 처리부분
 @api_view(['GET', 'POST'])
@@ -36,6 +34,9 @@ def hello_world(request):
 
     return Response(serializer.data)
 
+
+def AccountCreateTemplate(request):
+    return render(request, 'accountapp/create.html')
 
 
 
