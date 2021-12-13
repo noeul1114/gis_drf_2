@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.authtoken import views
 
-from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView
+from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, ListUsers
 
 app_name = 'accountapp'
 
@@ -18,5 +18,7 @@ urlpatterns = [
     path('create_template/', AccountCreateTemplate, name='create_template'),
 
     path('create/', AccountCreateAPIView.as_view(), name='create'),
+
+    path('list/', ListUsers.as_view(), name='list'),
 
 ]
