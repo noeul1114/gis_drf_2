@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from rest_framework.authtoken import views
 
 from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
@@ -15,6 +16,8 @@ urlpatterns = [
 
     path('login_template/', AccountLoginView, name='login_template'),
     path('login/', views.obtain_auth_token, name='login'),
+
+    path('logout_template/', TemplateView.as_view(template_name='accountapp/logout.html'), name='logout'),
 
 
     path('create_template/', AccountCreateTemplate, name='create_template'),
