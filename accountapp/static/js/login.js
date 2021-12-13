@@ -11,7 +11,8 @@ function send_input() {
             document.getElementById('alert_box').innerHTML
                 = "<div class='btn btn-primary rounded-pill px-5'>로그인이 성공했습니다</div>";
 
-            window.location.href = '/accounts/hello_world_template/';
+            // Token 수령 후 쿠키 생성
+            document.cookie = "drf_token=Token " + response.data['token'];
 
         })
         .catch(function (error) {
