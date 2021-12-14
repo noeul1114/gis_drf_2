@@ -18,21 +18,9 @@
 
   </div>
 
+<script src="{% static 'js/retrieve.js' %}"></script>
 <script>
-
-axios.get('/accounts/retrieve/1')
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-
+  initialize("{{ view.kwargs.pk }}");
 </script>
 
 
