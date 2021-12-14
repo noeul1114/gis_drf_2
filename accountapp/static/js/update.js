@@ -18,9 +18,16 @@ function initialize(pk) {
 }
 
 function update_account(pk) {
-    axios.patch('/accounts/update/' + pk, {
-        username: document.getElementById('username').value,
-        email: document.getElementById('email').value,
+    axios({
+        method: 'patch',
+        url: '/accounts/update/' + pk,
+        data: {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+        },
+        headers: {
+            Authorization: decodeURIComponent(getCookie('drf_token')),
+        }
     })
         .then(function (response) {
             // handle success
