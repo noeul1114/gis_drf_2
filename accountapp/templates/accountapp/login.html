@@ -3,20 +3,27 @@
 
 {% block content %}
 
-  <div>
-    <div>
-      <h3>Login</h3>
+  <div class="my-5" style="max-width: 500px; margin: auto">
+    <div class="my-5">
+      <h2>Login</h2>
     </div>
 
     <div id="alert_box">
     </div>
 
     <!--  ID  -->
-    <input id="username" type="text">
+    <div class="mb-3">
+      <label for="username" class="form-label">username</label>
+      <input id="username" type="text" class="form-control">
+    </div>
     <!--  PASSWORD  -->
-    <input id="password" type="password">
+    <div class="mb-3">
+      <label for="password" class="form-label">password</label>
+      <input id="password" type="password" class="form-control">
+    </div>
 
-    <input type="submit" class="btn btn-dark rounded-pill px-5" onclick="send_input()">
+    <input type="submit" class="btn btn-dark rounded-pill px-5"
+           onclick="send_input()">
 
   </div>
 
