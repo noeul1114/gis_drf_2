@@ -20,5 +20,5 @@ class UserSerializer(serializers.ModelSerializer):
 class UserWithoutPasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'date_joined']
+        fields = ['id', 'username', 'email', 'date_joined']
 
