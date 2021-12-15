@@ -1,5 +1,5 @@
 function initialize(pk) {
-    axios.get('/accounts/retrieve/' + pk )
+    axios.get('/accounts/' + pk )
         .then(function (response) {
             // handle success
             console.log(response);
@@ -20,7 +20,7 @@ function initialize(pk) {
 function update_account(pk) {
     axios({
         method: 'patch',
-        url: '/accounts/update/' + pk,
+        url: '/accounts/' + pk,
         data: {
             username: document.getElementById('username').value,
             email: document.getElementById('email').value,
