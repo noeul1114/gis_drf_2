@@ -19,7 +19,7 @@ function send_input() {
             console.log(response);
 
             // 완성된 이후 해당 유저의 detail 페이지로 리다이렉트
-            window.location.href = '/accounts/retrieve_template/' + response.data['owner']['id'];
+            window.location.href = '/accounts/retrieve_template/' + response.data['owner_id'];
 
         })
         .catch(function (error) {
