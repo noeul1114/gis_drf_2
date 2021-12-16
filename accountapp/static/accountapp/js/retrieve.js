@@ -1,11 +1,13 @@
 function initialize(pk) {
-    axios.get('/accounts/' + pk )
+    axios.get('/profiles/' + pk)
         .then(function (response) {
             // handle success
             console.log(response);
 
-            document.getElementById('username').innerHTML = response.data['username'];
-            document.getElementById('date_joined').innerHTML = response.data['date_joined'];
+            document.getElementById('nickname').innerHTML = response.data['nickname'];
+            document.getElementById('message').innerHTML = response.data['message'];
+
+            document.getElementById('image').src = response.data['image'];
 
         })
         .catch(function (error) {
