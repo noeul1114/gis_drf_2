@@ -75,6 +75,19 @@ class AccountRUDAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwner]
     authentication_classes = [TokenAuthentication]
 
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        result_dict = dict(serializer.data)
+
+        if request.user == instance:
+            result_dict['is_page_owner'] = 'True'
+        else:
+            result_dict['is_page_owner'] = 'False'
+
+        return Response(result_dict)
+
 
 class AccountTokenRetrieveAPIView(APIView):
     authentication_classes = [TokenAuthentication]
