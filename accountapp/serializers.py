@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
+from profileapp.serializers import ProfileSerializer
+
 
 class NewModelSerializer(serializers.Serializer):
     text = serializers.CharField(max_length=255)
@@ -18,7 +20,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserWithoutPasswordSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'date_joined']
+        fields = ['id', 'username', 'email', 'date_joined', 'profile']
 
