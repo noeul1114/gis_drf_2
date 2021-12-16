@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.generics import CreateAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from profileapp.models import Profile
@@ -30,7 +30,7 @@ class ProfileUpdateTemplateView(TemplateView):
     template_name = 'profileapp/update.html'
 
 
-class ProfileUpdateAPIView(UpdateAPIView):
+class ProfileRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
