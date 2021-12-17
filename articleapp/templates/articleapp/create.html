@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <div class="my-5" style="max-width: 500px; margin: auto">
+    <div class="my-5">
+      <h2>Create Article</h2>
+    </div>
+
+    <div id="alert_box">
+    </div>
+
+    <!--  TITLE  -->
+    <div class="mb-3">
+      <label for="title" class="form-label">title</label>
+      <input id="title" type="text" class="form-control">
+    </div>
+    <!--  IMAGE  -->
+    <div class="mb-3">
+      <label for="image" class="form-label">image</label>
+      <input id="image" type="file" accept="image/*" class="form-control">
+    </div>
+    <!--  CONTENT  -->
+    <div class="mb-3">
+      <label for="content" class="form-label">content</label>
+      <textarea id="content" class="form-control" rows="5"></textarea>
+    </div>
+
+    <input type="submit" class="btn btn-dark rounded-pill px-5" onclick="send_input()">
+
+  </div>
+
+<script src="{% static 'articleapp/js/create.js' %}"></script>
+
+
+{% endblock %}
