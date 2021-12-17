@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from articleapp.models import Article
 from articleapp.permissions import IsArticleOwner
@@ -44,4 +45,17 @@ class ArticleRUDAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = [IsArticleOwner]
     authentication_classes = [TokenAuthentication]
+
+    def get(self, request, *args, **kwargs):
+        target_article = self.get_object()
+        serializer = self.get_serializer(target_article)
+
+        result_dict = dict(serializer.data)
+
+        if request.user == target_article.writer:
+            result_dict['is_page_owner'] = 'True'
+        else:
+            result_dict['is_page_owner'] = "False"
+
+        return Response(result_dict)
 
