@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <div class="my-5" style="max-width: 500px; margin: auto">
+
+    <div id="alert_box"></div>
+
+    <div class="my-5">
+      <h2>Update Article</h2>
+    </div>
+
+    <div>
+      <div class="mb-3">
+        <label for="title" class="form-label">title</label>
+        <input id="title" type="text" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">image</label>
+        <input id="image" type="file" accept="image/*" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">content</label>
+        <textarea id="content" class="form-control" rows="5"></textarea>
+      </div>
+
+
+      <input type="submit" onclick="update_article('{{ view.kwargs.pk }}');"
+             class="btn btn-dark rounded-pill px-5">
+    </div>
+  </div>
+
+<script src="{% static 'articleapp/js/update.js' %}"></script>
+<script>
+  initialize("{{ view.kwargs.pk }}");
+</script>
+
+
+{% endblock %}
