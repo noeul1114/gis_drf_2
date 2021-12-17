@@ -23,6 +23,10 @@ class ArticleCreateAPIView(CreateAPIView):
     authentication_classes = [TokenAuthentication]
 
 
+class ArticleRetrieveTemplateView(TemplateView):
+    template_name = 'articleapp/retrieve.html'
+
+
 class ArticleRUDAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
