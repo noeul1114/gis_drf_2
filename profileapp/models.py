@@ -7,6 +7,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 
 # Create your models here.
+from image_processing import thumbnail
 
 
 class Profile(models.Model):
@@ -25,18 +26,7 @@ class Profile(models.Model):
 
     def generate_thumbnail(self):
         if self.image:
-            img = Image.open(self.image)
-
-            width, height = img.size
-            ratio = height / width
-            pixel = 250
-
-            img = img.convert("RGB")
-            img.thumbnail((pixel, round(ratio * pixel)))
-
-            output = BytesIO()
-            img.save(output, format='JPEG', quality=95)
-            output.seek(0)
+            output = thumbnail.generate_thumbnail(self.image)
 
             self.thumb = InMemoryUploadedFile(output, "ImageField", self.image.name,
                                               'image/jpeg', sys.getsizeof(output), None)
