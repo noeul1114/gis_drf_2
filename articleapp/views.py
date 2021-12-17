@@ -22,6 +22,9 @@ class ArticleCreateAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
+    def perform_create(self, serializer):
+        serializer.save(writer=self.request.user)
+
 
 class ArticleRetrieveTemplateView(TemplateView):
     template_name = 'articleapp/retrieve.html'
@@ -41,7 +44,4 @@ class ArticleRUDAPIView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = [IsArticleOwner]
     authentication_classes = [TokenAuthentication]
-
-    def perform_update(self, serializer):
-        serializer.save(writer=self.request.user)
 
