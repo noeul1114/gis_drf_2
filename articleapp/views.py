@@ -3,11 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
 from articleapp.models import Article
+from articleapp.paginations import CustomPageNumberPagination
 from articleapp.permissions import IsArticleOwner
 from articleapp.serializers import ArticleSerializer
 
@@ -18,6 +19,15 @@ class ArticleCreateTemplateView(TemplateView):
 
 class MagicGridTemplateView(TemplateView):
     template_name = 'articleapp/magic_grid.html'
+
+
+class ArticleListAPIView(ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+    permission_classes = [AllowAny]
+    authentication_classes = [TokenAuthentication]
+    pagination_class = CustomPageNumberPagination
 
 
 class ArticleCreateAPIView(CreateAPIView):
