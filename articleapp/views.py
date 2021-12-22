@@ -32,6 +32,15 @@ class ArticleListCreateAPIView(ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(writer=self.request.user)
 
+    def post(self, request, *args, **kwargs):
+        """
+        Article 생성 Endpoint
+
+        게시글 생성하기 위한 로직<br>
+        게시글 생성하기 위해서는 로그인 권한을 요구합니다
+        """
+        return super().post(request, *args, **kwargs)
+
 
 class ArticleRetrieveTemplateView(TemplateView):
     template_name = 'articleapp/retrieve.html'
