@@ -8,7 +8,7 @@ function getCookie(name) {
 function initialize() {
     axios({
         method: 'get',
-        url: '/articles/list/',
+        url: '/articles/',
         headers: {
             Authorization: decodeURIComponent(getCookie('drf_token')),
         }
@@ -29,6 +29,29 @@ function initialize() {
 
             // paginator 기반 page 객체 생성
 
+            var pagination = document.getElementById('pagination');
+
+            if (response.data['previous'] !== null) {
+                pagination.innerHTML +=
+                    "<a href=\"" + response.data['previous'] + "\"" +
+                    "   class=\"btn btn-secondary rounded-pill px-5 mx-3\">" +
+                    "Previous" +
+                    "</a>";
+            }
+
+            pagination.innerHTML +=
+                    "<a href=\"#\"" +
+                    "   class=\"btn btn-dark rounded-pill px-5 mx-3\">" +
+                    "Current page" +
+                    "</a>";
+
+            if (response.data['next'] !== null) {
+                pagination.innerHTML +=
+                    "<a href=\"" + response.data['next'] + "\"" +
+                    "   class=\"btn btn-secondary rounded-pill px-5 mx-3\">" +
+                    "Next" +
+                    "</a>";
+            }
         })
         .catch(function (error) {
             // handle error

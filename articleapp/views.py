@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, ListCreateAPIView
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from articleapp.models import Article
@@ -21,21 +21,13 @@ class ArticleListTemplateView(TemplateView):
     template_name = 'articleapp/list.html'
 
 
-class ArticleListAPIView(ListAPIView):
+class ArticleListCreateAPIView(ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     authentication_classes = [TokenAuthentication]
     pagination_class = CustomPageNumberPagination
-
-
-class ArticleCreateAPIView(CreateAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
 
     def perform_create(self, serializer):
         serializer.save(writer=self.request.user)
