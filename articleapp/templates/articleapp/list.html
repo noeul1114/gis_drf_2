@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <style>
+    .container div {
+      width: 180px;
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+    }
+  </style>
+
+  <div class="container" id="article_list"
+       style="max-width: 900px; margin: auto; padding: 0;">
+  </div>
+
+  <div id="pagination">
+  </div>
+
+
+  <script src="{% static 'articleapp/js/list.js' %}"></script>
+  <script src="{% static 'articleapp/js/magic_grid.js' %}"></script>
+  <script>
+      initialize();
+
+      let magicGrid = new MagicGrid({
+        container: '.container',
+        animate: true,
+        gutter: 20,
+        static: true,
+        useMin: true
+      });
+
+      magicGrid.listen();
+  </script>
+
+{% endblock %}

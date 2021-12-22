@@ -17,8 +17,8 @@ class ArticleCreateTemplateView(TemplateView):
     template_name = 'articleapp/create.html'
 
 
-class MagicGridTemplateView(TemplateView):
-    template_name = 'articleapp/magic_grid.html'
+class ArticleListTemplateView(TemplateView):
+    template_name = 'articleapp/list.html'
 
 
 class ArticleListAPIView(ListAPIView):
