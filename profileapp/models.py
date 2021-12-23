@@ -8,6 +8,7 @@ from django.db import models
 
 # Create your models here.
 from image_processing import thumbnail
+from profileapp.tasks import generate_thumbnail_celery_lag
 
 
 class Profile(models.Model):
@@ -26,7 +27,7 @@ class Profile(models.Model):
 
     def generate_thumbnail(self):
         if self.image:
-            output = thumbnail.generate_thumbnail(self.image)
+            output = generate_thumbnail_celery_lag.delay(self.image)
 
             self.thumb = InMemoryUploadedFile(output, "ImageField", self.image.name,
                                               'image/jpeg', sys.getsizeof(output), None)
