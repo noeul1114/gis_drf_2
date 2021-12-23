@@ -17,17 +17,17 @@ services:
 #      - gis_media:/data/media/
 #      - gis_log:/var/log/nginx/
 #
-#  django:
-#    image: gis_drf_2:1.0
-#    networks:
-#      - gis_network
-#    volumes:
-#      - gis_static:/home/gis_drf_2/staticfiles/
-#      - gis_media:/home/gis_drf_2/media/
-#    secrets:
-#      - DJANGO_SECRET_KEY
-#      - MARIADB_USER
-#      - MARIADB_PASSWORD
+  django:
+    image: gis_drf_2:1.0
+    networks:
+      - gis_network
+    volumes:
+      - gis_static:/home/gis_drf_2/staticfiles/
+      - gis_media:/home/gis_drf_2/media/
+    secrets:
+      - DJANGO_SECRET_KEY
+      - MARIADB_USER
+      - MARIADB_PASSWORD
 
   mariadb:
     image: mariadb:10.5
