@@ -34,5 +34,5 @@ def generate_thumbnail_celery_lag(profile_id):
                                                 'image/jpeg',
                                                 sys.getsizeof(output),
                                                 None)
-    target_profile.save()
+    target_profile.save(async_func=True)
 

@@ -24,7 +24,9 @@ class Profile(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-
-@receiver(post_save, sender=Profile)
-def async_generate_thumbnail(sender, instance=None, created=False, **kwargs):
-    generate_thumbnail_celery_lag.delay(instance.pk)
+    def save(self, async_func=False, *args, **kwargs):
+        if async_func:
+            super().save(*args, **kwargs)
+        else:
+            super().save(*args, **kwargs)
+            generate_thumbnail_celery_lag.delay(self.pk)
