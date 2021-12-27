@@ -49,6 +49,9 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.9.11-management
+    deploy:
+      placement:
+        constraints: [node.labels.tag==cuda]
     networks:
       - gis_network
     ports:
