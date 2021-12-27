@@ -47,6 +47,13 @@ services:
       MARIADB_PASSWORD_FILE: /run/secrets/MARIADB_PASSWORD
       MARIADB_ROOT_PASSWORD_FILE: /run/secrets/MARIADB_ROOT_PASSWORD
 
+  rabbitmq:
+    image: rabbitmq:3.9.11-management
+    networks:
+      - gis_network
+    ports:
+      - 5672:5672
+      - 8080:15672
 
 networks:
   gis_network:
