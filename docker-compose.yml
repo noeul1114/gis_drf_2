@@ -20,7 +20,7 @@ services:
       - gis_log:/var/log/nginx/
 
   django:
-    image: gis_drf_2:1.0
+    image: gis_drf_2:1.1
     networks:
       - gis_network
     volumes:
